@@ -22,19 +22,35 @@
   ?>
   <h1 class="title-order"> Order Your Beers Here</h1>
 
-  <form>
-    <label class="orderInputLabel" for="name">Name
-      <input class="orderInputClass" type="text" name="name">
+  <form class="orderForm">
+    <label class="orderInputLabel" for="fullName">Full name
+      <input class="orderInputClass" type="text" name="fullName">
     </label>
     <br>
-    <label class="orderInputLabel" for="surname">Surname
-      <input class="orderInputClass" type="text" name="surname">
+    <label class="orderInputLabel" for="beerstype">Beer type
+      <input class="orderInputClass" type="text" name="type_beer">
     </label>
     <br>
-    <label class="orderInputLabel" for="beerstype">Beers type
-      <input class="orderInputClass" type="text" name="beerstype">
+    <label class="orderInputLabel" for="amount">Amount
+      <input class="orderInputClass" type="text" name="amount">
     </label>
+    <br>
+    <label class="orderInputLabel" for="pickUpDay">Pick up day
+      <input class="orderInputClass" type="text" name="pickup_day">
+    </label>
+    <br>
+    <label class="orderInputLabel" for="pickUpTime">Pick up time
+      <input class="orderInputClass" type="text" name="pickup_time" placeholder="Only from 9:00 am to 5:00 pm">
+    </label>
+    <br>
+    <div class="containerBtns">
+      <input class="addBtn" type="submit" name="addNewOrder" value="Add New Order">
+      <br>
+      <input class="viewBtn" type="submit" name="viewData" value="View Cart">
+    </div>
+    <div name="messageOrder">
 
+    </div>
   </form>
 
 

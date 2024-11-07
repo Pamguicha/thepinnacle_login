@@ -2,6 +2,7 @@
   --primary-color-branding: #3B5A9D;
   --secondary-color-branding: #FFFFFF;
   --tertiary-color-branding: #4FB2AA;
+  --fourthiary-color-branding: #c3d0ed;
 }
 
 body{
@@ -61,7 +62,7 @@ body{
   text-align: center;
 }
 .loginForm{
-  background-color: #c3d0ed;
+  background-color: var(--fourthiary-color-branding);
   border-radius: 8px;
   width: 300px;
   height: 380px;
@@ -95,6 +96,12 @@ margin-left: 15px;
   cursor: pointer;
 }
 
+/*index page*/
+.bigLogo{
+  width: 300px;
+  display: block;
+  margin: auto;
+}
 
 /*orderpage*/
 
@@ -103,9 +110,45 @@ margin-left: 15px;
   margin: auto;
   display: block;
   margin-top: 35px;
-
+  margin-bottom: 35px;
 }
 
+.orderForm{
+  background-color: var(--fourthiary-color-branding);
+  border-radius: 8px;
+  width: 450px;
+  height: 400px;
+  display: block;
+  padding: 20px;
+  margin: auto;
+}
+
+.orderInputLabel{
+  margin-left: 15px;
+}
+.orderInputClass{
+   width: 270px;
+  height: 20px;
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+  border: none;
+}
+
+/*cart*/
+
+.databaseContainer{
+  width: 80%;
+  border: none;
+  border-collapse: separate;
+  margin: auto;
+  display: block;
+}
+
+td{
+  background-color: var(--tertiary-color-branding);
+  padding: 5px 20px;
+}
 
 .textFooter{
   background-color: var(--primary-color-branding);
@@ -117,6 +160,5 @@ margin-left: 15px;
   left:0;
   bottom: -18px;
   width: 100%;
-
 
 }

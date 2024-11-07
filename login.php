@@ -12,6 +12,11 @@
   <link rel="stylesheet" href="style.css">
   <title>Welcome to the login page</title>
 </head>
+<?php
+require_once("dbconnection.php");
+session_start();
+
+?>
 
 <body>
   <img class="logo" src="images/pinnacle-logo.png" alt="an image of the logo of Pinnacle">
@@ -23,7 +28,7 @@
     <h1 class="title-beer containerOne">
       Craft <br>Amber <br>Ale<br>
     </h1>
-    <form class="loginForm containerTwo">
+    <form action="add.php" method="post" name="add" class="loginForm containerTwo">
       <h2 class="loginTitle">Login</h2>
       <label class="inputText" for="email">Email
         <br>
@@ -42,12 +47,16 @@
       <br>
       <input class="loginbtn" type="submit" name="logincredentials" value="Login">
       <br>
-      <div name="OutputMessage">
-      </div>
+      <?php
+      if (isset($_SESSION['error'])) {
+        echo "<label> {$_SESSION['error']} </label>";
+        unset($_SESSION['error']); //clear the error message
+      }
+      ?>
     </form>
     <div class="containerThree">
-      (EMPTY)
-      (EMPTY)
+      empty
+      empty
     </div>
   </main>
   <?php
