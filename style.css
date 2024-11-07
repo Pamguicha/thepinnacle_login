@@ -1,0 +1,122 @@
+:root {
+  --primary-color-branding: #3B5A9D;
+  --secondary-color-branding: #FFFFFF;
+  --tertiary-color-branding: #4FB2AA;
+}
+
+body{
+  font-family: "Josefin Sans", sans-serif ;
+   background-image: url("images/back1-edit.png");
+   background-repeat: no-repeat;
+   height: 800px;
+   background-size: cover;
+   background-position: center;
+}
+
+.logo{
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+
+.nav_bar{
+  background-color: var(--primary-color-branding);
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.navClickeableLink{
+ 
+  color: var(--secondary-color-branding);
+  text-decoration: none;
+}
+
+.navClickeableLink:hover{
+  color: var(--tertiary-color-branding);
+}
+
+
+.menuList{
+   display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+/*Login form style*/
+
+.title-beer{
+  font-weight: 400;
+  font-size: 4rem;
+}
+
+.containerDiv{
+  margin-top:40px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.loginTitle{
+  text-align: center;
+}
+.loginForm{
+  background-color: #c3d0ed;
+  border-radius: 8px;
+  width: 300px;
+  height: 380px;
+}
+.inputText{
+margin-left: 15px;
+}
+
+.inputClassLogin{
+  width: 270px;
+  height: 30px;
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+  border: none;
+}
+
+.loginbtn{
+  background-color: var(--primary-color-branding);
+  color: var(--secondary-color-branding);
+  width: 270px;
+  height: 35px;
+  border-radius: 20px;
+ border: none;
+ display: block;
+ margin: auto;
+}
+
+.loginbtn:hover{
+  background-color: var(--tertiary-color-branding);
+  cursor: pointer;
+}
+
+
+/*orderpage*/
+
+.title-order{
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-top: 35px;
+
+}
+
+
+.textFooter{
+  background-color: var(--primary-color-branding);
+  box-sizing: border-box;
+  padding: 18px;
+  text-align: center;
+  color: white;
+  position: fixed;
+  left:0;
+  bottom: -18px;
+  width: 100%;
+
+
+}
