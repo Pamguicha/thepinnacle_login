@@ -19,10 +19,11 @@
   <?php
   include 'navigation.php';
   ?>
+
+  <img class="bigLogo" src="images/pinnacle-logo.png" alt="an image of the logo of Pinnacle">
   <form action="logout.php" method="post">
     <input type="submit" value="Logout">
   </form>
-  <img class="bigLogo" src="images/pinnacle-logo.png" alt="an image of the logo of Pinnacle">
   <?php
   require_once("dbconnection.php");
   if (session_status() == PHP_SESSION_NONE) {
