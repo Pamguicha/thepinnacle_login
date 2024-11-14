@@ -34,12 +34,18 @@ function newOrder()
     //check for empty fields
     if (empty($fullName) || empty($type_beer) || empty($amount) || empty($pickup_day) || empty($pickup_time)) {
       $messageOrder = "<p> <font color='red'> One of the fields is empty. Please fill in all fields to submit the form";
-      return;
+      header("Location: order.php?message=" . urlencode($messageOrder));
+      exit();
+    } else {
+      $messageOrder = "<p> <font color='green'> A new account was created";
+      header("Location: order.php?message=" . urlencode($messageOrder));
+
     }
 
     //SQL INSERT statement STORE PROCEDUMENT
 
-    $stmt = $conn->prepare("CALL getInsertData(:fullName, :type_beer, :amount, :pickup_day, :pickup_time)");
+    $stmt = $conn->prepare("CALL getInsertData(:ID_customer, :fullName, :type_beer, :amount, :pickup_day, :pickup_time)");
+    $stmt->bindParam(":ID_customer", $id_customer);
     $stmt->bindParam(":fullName", $fullName);
     $stmt->bindParam(":type_beer", $type_beer);
     $stmt->bindParam(":amount", $amount);

@@ -36,25 +36,26 @@ require_once("dbConnection.php");
   ?>
   <h1 class="title-order"> Order Your Beers Here</h1>
 
-  <form class="orderForm">
+  <form class="orderForm" method="POST" action="addorderpage.php">
     <label class="orderInputLabel" for="fullName">Full name
-      <input class="orderInputClass" type="text" name="fullName">
+      <input class="orderInputClass" type="text" name="fullName" value="<?php echo $fullName; ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="beerstype">Beer type
-      <input class="orderInputClass" type="text" name="type_beer">
+      <input class="orderInputClass" type="text" name="type_beer" value="<?php echo $type_beer; ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="amount">Amount
-      <input class="orderInputClass" type="text" name="amount">
+      <input class="orderInputClass" type="text" name="amount" value="<?php echo $amount; ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="pickUpDay">Pick up day
-      <input class="orderInputClass" type="text" name="pickup_day">
+      <input class="orderInputClass" type="text" name="pickup_day" value="<?php echo $pickup_day; ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="pickUpTime">Pick up time
-      <input class="orderInputClass" type="text" name="pickup_time" placeholder="Only from 9:00 am to 5:00 pm">
+      <input class="orderInputClass" type="text" name="pickup_time" value="<?php echo $pickup_time; ?>"
+        placeholder="Only from 9:00 am to 5:00 pm">
     </label>
     <br>
     <div class="containerBtns">
