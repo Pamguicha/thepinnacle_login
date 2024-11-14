@@ -32,6 +32,7 @@ function checkCustomerCredentials()
 
     //test if function worked
     if ($result) {
+      $_SESSION["ID_customer"] = $result["ID_customer"];
       $_SESSION["email"] = $result["email"];
       $_SESSION["firstName"] = $result["firstName"];
       header("location: index.php");

@@ -22,8 +22,13 @@ $amount = isset($_SESSION['amount']) ? $_SESSION['amount'] : '';
 $pickup_day = isset($_SESSION['pickup_day']) ? $_SESSION['pickup_day'] : '';
 $pickup_time = isset($_SESSION['pickup_time']) ? $_SESSION['pickup_time'] : '';
 
-//clear the session data after use
-session_unset();
+
+// Clear specific order details after processing
+unset($_SESSION['fullName']);
+unset($_SESSION['type_beer']);
+unset($_SESSION['amount']);
+unset($_SESSION['pickup_day']);
+unset($_SESSION['pickup_time']);
 //include the database connection file
 require_once("dbConnection.php");
 ?>
