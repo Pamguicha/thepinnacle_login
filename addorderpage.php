@@ -95,6 +95,17 @@ function displayData()
     require_once "dbconnection.php";
     //SQL SELECT statement
     $stmt = $conn->prepare("CALL displayData(:ID_customer)");
+
+    /*store procedure used in sql
+    Display data: 
+    DELIMITER // 
+    CREATE PROCEDURE displayData(IN p_ID_customer INT) 
+    BEGIN SELECT * FROM orderBeer WHERE ID_customer = p_ID_customer; 
+    END 
+    // DELIMITER ;
+
+    */
+
     $stmt->bindParam(":ID_customer", $id_customer, PDO::PARAM_INT);
 
     $stmt->execute();
