@@ -110,6 +110,8 @@ function displayData()
 
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    // In a video said $result = $stmt->fetchAll();
+    //if (result) foreach ($result as $row){} else {}
 
     if ($row) {
       $_SESSION['fullName'] = $row['fullName'];
