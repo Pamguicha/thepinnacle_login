@@ -24,11 +24,12 @@ $pickup_time = isset($_SESSION['pickup_time']) ? $_SESSION['pickup_time'] : '';
 
 
 // Clear specific order details after processing
-unset($_SESSION['fullName']);
+
+/*unset($_SESSION['fullName']);
 unset($_SESSION['type_beer']);
 unset($_SESSION['amount']);
 unset($_SESSION['pickup_day']);
-unset($_SESSION['pickup_time']);
+unset($_SESSION['pickup_time']);*/
 //include the database connection file
 require_once("dbConnection.php");
 ?>
@@ -65,8 +66,8 @@ require_once("dbConnection.php");
     <br>
     <div class="containerBtns">
       <input class="addBtn" type="submit" name="addNewOrder" value="Add New Order">
-      <br>
       <input class="viewBtn" type="submit" name="viewData" value="View Cart">
+      <input class="editBtn" type="submit" name="editData" value="Edit Order">
     </div>
     <div name="messageOrder">
       <?php

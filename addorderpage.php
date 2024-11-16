@@ -18,6 +18,11 @@ if (filter_input(INPUT_SERVER, "REQUEST_METHOD") == "POST") {
   if (filter_input(INPUT_POST, "viewData")) {
     displayData();
   }
+
+  if (filter_input(INPUT_POST, "editData")) {
+    editData();
+  }
+
 }
 
 function newOrder()
@@ -95,41 +100,33 @@ function displayData()
     require_once "dbconnection.php";
     //SQL SELECT statement
     $stmt = $conn->prepare("CALL displayData(:ID_customer)");
-
-    /*store procedure used in sql
-    Display data: 
-    DELIMITER // 
-    CREATE PROCEDURE displayData(IN p_ID_customer INT) 
-    BEGIN SELECT * FROM orderBeer WHERE ID_customer = p_ID_customer; 
-    END 
-    // DELIMITER ;
-
-    */
-
     $stmt->bindParam(":ID_customer", $id_customer, PDO::PARAM_INT);
-
     $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    // In a video said $result = $stmt->fetchAll();
-    //if (result) foreach ($result as $row){} else {}
 
-    if ($row) {
-      $_SESSION['fullName'] = $row['fullName'];
-      $_SESSION['type_beer'] = $row['type_beer'];
-      $_SESSION['amount'] = $row['amount'];
-      $_SESSION['pickup_day'] = $row['pickup_day'];
-      $_SESSION['pickup_time'] = $row['pickup_time'];
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($result) {
+      //Store all orders in session
+      $_SESSION['orders'] = $result;
     } else {
-      $_SESSION['messageCart'] = "No order for this customer";
+      $_SESSION['messageCart'] = "No orders found for this customer";
     }
-
-
   } catch (PDOException $e) {
     $_SESSION['messageCart'] = "Database connection failed with the following error: " . $e->getMessage();
 
   }
 
-  header("Location: cart.php?message=" . urlencode($messageCart));
+  //Redirect to cart.php after processing
+  header("Location: cart.php");
   exit();
+
+}
+
+function editData()
+{
+
+  global $fullName, $type_beer, $amount, $pickup_day, $pickup_time, $messageOrder;
+  // get the inputted values
+
 
 }

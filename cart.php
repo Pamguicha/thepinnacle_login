@@ -1,3 +1,15 @@
+<?php
+session_start();
+//include the database connection file
+require_once("dbconnection.php");
+
+$orders = $_SESSION['orders'] ?? [];
+$messageCart = $_SESSION['messageCart'] ?? null;
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,15 +25,7 @@
   <title>Cart Page</title>
 </head>
 
-<?php
-session_start();
-//include the database connection file
-require_once("dbconnection.php");
 
-// Call the displayData function to fetch and store data
-displayData();
-
-?>
 
 <body>
   <img class="logo" src="images/pinnacle-logo.png" alt="an image of the logo of Pinnacle">
@@ -37,26 +41,38 @@ displayData();
     } ?>
   </div>
   <table class="databaseContainer">
+    <?php echo htmlspecialchars($_SESSION['fullName'] ?? ''); ?>
+    <?php echo htmlspecialchars($_SESSION['type_beer'] ?? ''); ?>
+    <?php echo htmlspecialchars($_SESSION['amount'] ?? ''); ?>
+    <?php echo htmlspecialchars($_SESSION['pickup_day'] ?? ''); ?>
+    <?php echo htmlspecialchars($_SESSION['pickup_time'] ?? ''); ?>
+
+
     <tr>
-      <td><strong>Full name</strong></td>
-      <td><strong>Beer type</strong></td>
-      <td><strong>Amount</strong></td>
-      <td><strong>Pick up day</strong></td>
-      <td><strong>Pick up time</strong></td>
+      <th> Full name </th>
+      <th> Beer type </th>
+      <th> Amount </th>
+      <th> Pick up day </th>
+      <th> Pick up time</th>
     </tr>
-    <tr>
-      <td><strong><?php echo htmlspecialchars($_SESSION['fullName'] ?? ''); ?> </strong></td>
-      <td><strong><?php echo htmlspecialchars($_SESSION['type_beer'] ?? ''); ?> </strong></td>
-      <td><strong><?php echo htmlspecialchars($_SESSION['amount'] ?? ''); ?></strong></td>
-      <td><strong><?php echo htmlspecialchars($_SESSION['pickup_day'] ?? ''); ?> </strong></td>
-      <td><strong><?php echo htmlspecialchars($_SESSION['pickup_time'] ?? ''); ?> </strong></td>
-    </tr>
+
+    <?php foreach ($orders as $order): ?>
+      <tr>
+        <td><?php echo htmlspecialchars($order['fullName']); ?></td>
+        <td><?php echo htmlspecialchars($order['type_beer']); ?></td>
+        <td><?php echo htmlspecialchars($order['amount']); ?></td>
+        <td><?php echo htmlspecialchars($order['pickup_day']); ?></td>
+        <td><?php echo htmlspecialchars($order['pickup_time']); ?></td>
+        <td>
+          <?php echo "<a href=\"order.php?id=" . htmlspecialchars($order['ID_customer']) . "\">Edit</a> | 
+               <a href=\"delete.php?id=" . htmlspecialchars($order['ID_customer']) . "\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>"; ?>
+
+        </td>
+      </tr>
+    <?php endforeach; ?>
   </table>
-  <form action="addorderpage.php" method="post">
-    <input type="submit" value="edit" name="edit">
-    <br>
-    <input type="submit" value="delete" name="delete">
-  </form>
+
+
   <?php
   include 'footer.php';
   ?>
