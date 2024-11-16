@@ -25,11 +25,11 @@ $pickup_time = isset($_SESSION['pickup_time']) ? $_SESSION['pickup_time'] : '';
 
 // Clear specific order details after processing
 
-/*unset($_SESSION['fullName']);
+unset($_SESSION['fullName']);
 unset($_SESSION['type_beer']);
 unset($_SESSION['amount']);
 unset($_SESSION['pickup_day']);
-unset($_SESSION['pickup_time']);*/
+unset($_SESSION['pickup_time']);
 //include the database connection file
 require_once("dbConnection.php");
 ?>
@@ -44,24 +44,28 @@ require_once("dbConnection.php");
 
   <form class="orderForm" method="POST" action="addorderpage.php">
     <label class="orderInputLabel" for="fullName">Full name
-      <input class="orderInputClass" type="text" name="fullName" value="<?php echo $fullName; ?>">
+      <input class="orderInputClass" type="text" name="fullName"
+        value="<?php echo htmlspecialchars($order['fullName'] ?? ''); ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="beerstype">Beer type
-      <input class="orderInputClass" type="text" name="type_beer" value="<?php echo $type_beer; ?>">
+      <input class="orderInputClass" type="text" name="type_beer"
+        value="<?php echo htmlspecialchars($order['type_beer'] ?? ''); ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="amount">Amount
-      <input class="orderInputClass" type="text" name="amount" value="<?php echo $amount; ?>">
+      <input class="orderInputClass" type="text" name="amount"
+        value="<?php echo htmlspecialchars($order['amount'] ?? ''); ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="pickUpDay">Pick up day
-      <input class="orderInputClass" type="text" name="pickup_day" value="<?php echo $pickup_day; ?>">
+      <input class="orderInputClass" type="text" name="pickup_day"
+        value="<?php echo htmlspecialchars($order['pickup_day'] ?? ''); ?>">
     </label>
     <br>
     <label class="orderInputLabel" for="pickUpTime">Pick up time
-      <input class="orderInputClass" type="text" name="pickup_time" value="<?php echo $pickup_time; ?>"
-        placeholder="Only from 9:00 am to 5:00 pm">
+      <input class="orderInputClass" type="text" name="pickup_time"
+        value="<?php echo htmlspecialchars($order['pickup_time'] ?? ''); ?>" placeholder="Only from 9:00 am to 5:00 pm">
     </label>
     <br>
     <div class="containerBtns">
