@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 16, 2024 at 03:21 AM
+-- Generation Time: Nov 20, 2024 at 11:51 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -86,18 +86,19 @@ CREATE TABLE `orderBeers` (
   `type_beer` varchar(255) NOT NULL,
   `amount` varchar(255) NOT NULL,
   `pickup_day` varchar(255) NOT NULL,
-  `pickup_time` varchar(255) NOT NULL
+  `pickup_time` varchar(255) NOT NULL,
+  `id_orders` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orderBeers`
 --
 
-INSERT INTO `orderBeers` (`ID_customer`, `fullName`, `type_beer`, `amount`, `pickup_day`, `pickup_time`) VALUES
-(4, 'Pablo Marmol', 'Amber', '30', 'wednesday', '2 pm'),
-(3, 'Pamela Mardones', 'Amber', '32', 'Thursday', '3 pm'),
-(2, 'Sean Murphy', '34 beer', '30 pack', 'friday', '3 ppm'),
-(1, 'Tom Richard', 'stout', '30 beers', 'monday', '4 pm');
+INSERT INTO `orderBeers` (`ID_customer`, `fullName`, `type_beer`, `amount`, `pickup_day`, `pickup_time`, `id_orders`) VALUES
+(3, 'Pamela Mardones', 'Amber', '32', 'Thursday', '3 pm', 2),
+(2, 'Sean Murphy', '34 beer', '30 pack', 'friday', '3 ppm', 3),
+(1, 'Tom Richard', 'stout', '30 beers', 'monday', '4 pm', 4),
+(4, 'Pablo Marmol', 'Amber', '30', 'friday', '3 pm', 7);
 
 --
 -- Indexes for dumped tables
@@ -113,8 +114,8 @@ ALTER TABLE `loginData`
 -- Indexes for table `orderBeers`
 --
 ALTER TABLE `orderBeers`
-  ADD PRIMARY KEY (`fullName`),
-  ADD KEY `ID_customer` (`ID_customer`);
+  ADD PRIMARY KEY (`id_orders`),
+  ADD KEY `orderbeers_ibfk_1` (`ID_customer`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -127,14 +128,10 @@ ALTER TABLE `loginData`
   MODIFY `ID_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `orderBeers`
+-- AUTO_INCREMENT for table `orderBeers`
 --
 ALTER TABLE `orderBeers`
-  ADD CONSTRAINT `orderbeers_ibfk_1` FOREIGN KEY (`ID_customer`) REFERENCES `loginData` (`ID_customer`);
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
