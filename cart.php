@@ -64,7 +64,7 @@ $messageCart = $_SESSION['messageCart'] ?? null;
         <td><?php echo htmlspecialchars($order['pickup_day']); ?></td>
         <td><?php echo htmlspecialchars($order['pickup_time']); ?></td>
         <td>
-          <?php echo "<a href=\"order.php?id=" . htmlspecialchars($order['ID_customer']) . "\">Edit</a> | 
+          <?php echo "<a href=\"order.php?id_orders=" . htmlspecialchars($order['id_orders']) . "\">Edit</a> | 
                <a href=\"delete.php?id_orders=" . htmlspecialchars($order['id_orders']) . "\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>"; ?>
 
         </td>

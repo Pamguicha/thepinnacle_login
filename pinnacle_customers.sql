@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2024 at 11:51 PM
+-- Generation Time: Nov 21, 2024 at 01:00 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -29,14 +29,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `displayData` (IN `p_ID_customer` IN
     SELECT * FROM orderBeers WHERE ID_customer = p_ID_customer;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `editData` (IN `p_fullName` VARCHAR(255), IN `p_type_beer` VARCHAR(255), IN `p_amount` INT, IN `p_pickup_day` DATE, IN `p_pickup_time` TIME)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `editData` (IN `p_fullName` VARCHAR(255), IN `p_type_beer` VARCHAR(255), IN `p_amount` VARCHAR(255), IN `p_pickup_day` VARCHAR(255), IN `p_pickup_time` VARCHAR(255), IN `p_id_orders` INT)   BEGIN
   UPDATE orderBeers
   SET
     type_beer = p_type_beer,
     amount = p_amount,
     pickup_day = p_pickup_day,
     pickup_time = p_pickup_time
-  WHERE fullName = p_fullName;
+  WHERE id_orders = p_id_orders;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCustomerByEmailAndPassword` (IN `p_email` VARCHAR(200), IN `p_password` VARCHAR(11))   BEGIN
