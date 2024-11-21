@@ -16,6 +16,29 @@
 session_start();
 //include the database connection file
 require_once("dbConnection.php");
+
+
+try {
+  $id_orders = (int) $_GET['id_orders'];
+  $stmt = $conn->prepare("SELECT * FROM orderBeers WHERE id_orders = :id_orders");
+  $stmt->bindParam(":id_orders", $id_orders, PDO::PARAM_INT);
+  $stmt->execute();
+
+  //fetch the next row of the result set as an associative array
+  $resultData = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($resultData) {
+    $fullName = $resultData['fullName'];
+    $type_beer = $resultData['type_beer'];
+    $amount = $resultData['amount'];
+    $pickup_day = $resultData['pickup_day'];
+    $pickup_time = $resultData['pickup_time'];
+  } else {
+    echo "no user found with that id order";
+  }
+} catch (PDOException $e) {
+  echo "Error: " . $e->getMessage();
+}
+
 ?>
 
 <body>
@@ -23,10 +46,42 @@ require_once("dbConnection.php");
   <?php
   include 'navigation.php';
   ?>
-
-  <img class="bigLogo" src="images/pinnacle-logo.png" alt="an image of the logo of Pinnacle">
   <h1 class="title-order"> Edit Page</h1>
 
+  <form class="editForm" method="POST" action="editAction.php">
+    <label class="orderInputLabel" for="fullName">Full name
+      <input class="orderInputClass" type="text" name="fullName" value="<?php echo $fullName; ?>">
+    </label>
+    <br>
+    <label class="orderInputLabel" for="beerstype">Beer type
+      <input class="orderInputClass" type="text" name="type_beer" value="<?php echo $type_beer; ?>">
+    </label>
+    <br>
+    <label class="orderInputLabel" for="amount">Amount
+      <input class="orderInputClass" type="text" name="amount" value="<?php echo $amount; ?>">
+    </label>
+    <br>
+    <label class="orderInputLabel" for="pickUpDay">Pick up day
+      <input class="orderInputClass" type="text" name="pickup_day" value="<?php echo $pickup_day; ?>">
+    </label>
+    <br>
+    <label class="orderInputLabel" for="pickUpTime">Pick up time
+      <input class="orderInputClass" type="text" name="pickup_time" placeholder="Only from 9:00 am to 5:00 pm"
+        value="<?php echo $pickup_time; ?>">
+    </label>
+    <br>
+    <input class="editBtnClass" type="submit" name="editOrder" value="Update Order">
+
+
+    <div name="messageEdit">
+      <?php
+      if (isset($_GET['message'])) {
+        $messageEdit = urldecode($_GET['message']);
+        echo $messageEdit;
+      }
+      ?>
+    </div>
+  </form>
 
 
   <?php

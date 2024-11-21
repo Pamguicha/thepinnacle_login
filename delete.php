@@ -6,12 +6,21 @@ require_once "dbconnection.php";
 $id_orders = (int) $_GET['id_orders'];
 
 // Delete row from the database table
-$result = mysqli_query($mysqli, "DELETE FROM `orderBeers` WHERE `id_orders` = '$id_orders'");
+try {
+  $stmt = $conn->prepare("CALL deleteOrder(:id_orders)");
+  $stmt->bindParam(":id_orders", $id_orders, PDO::PARAM_INT);
+  $stmt->execute();
 
-if (!$result) {
-  echo "Error deleting user: " . mysqli_error($mysqli);
-} else {
-  header("Location: cart.php");
-  exit();
+  if ($stmt->rowCount() > 0) {
+    //redirect if the record is successfully deleted
+    header("Location: order.php");
+    exit();
+  } else {
+    echo "No record found with ID: $id_orders.";
+  }
+} catch (PDOException $e) {
+  // Log error and show a friendly message
+  error_log("Error deleting record: " . $e->getMessage());
+  echo "An error occurred while trying to delete the record. Please try again later.";
 }
 ?>

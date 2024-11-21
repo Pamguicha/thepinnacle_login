@@ -134,6 +134,15 @@ margin-left: 15px;
   border-radius: 20px;
   border: none;
 }
+/*edit page*/
+.editForm{
+  background-color: #bec3cd;
+  width: 450px;
+  height: 400px;
+  display: block;
+  padding: 20px;
+  margin: auto;
+}
 
 /*cart*/
 
