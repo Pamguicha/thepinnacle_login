@@ -16,12 +16,6 @@
 
 <?php
 session_start();
-$fullName = isset($_SESSION['fullName']) ? $_SESSION['fullName'] : '';
-$type_beer = isset($_SESSION['type_beer']) ? $_SESSION['type_beer'] : '';
-$amount = isset($_SESSION['amount']) ? $_SESSION['amount'] : '';
-$pickup_day = isset($_SESSION['pickup_day']) ? $_SESSION['pickup_day'] : '';
-$pickup_time = isset($_SESSION['pickup_time']) ? $_SESSION['pickup_time'] : '';
-
 
 // Clear specific order details after processing
 
@@ -44,34 +38,28 @@ require_once("dbConnection.php");
 
   <form class="orderForm" method="POST" action="addorderpage.php">
     <label class="orderInputLabel" for="fullName">Full name
-      <input class="orderInputClass" type="text" name="fullName"
-        value="<?php echo htmlspecialchars($order['fullName'] ?? ''); ?>">
+      <input class="orderInputClass" type="text" name="fullName">
     </label>
     <br>
     <label class="orderInputLabel" for="beerstype">Beer type
-      <input class="orderInputClass" type="text" name="type_beer"
-        value="<?php echo htmlspecialchars($order['type_beer'] ?? ''); ?>">
+      <input class="orderInputClass" type="text" name="type_beer">
     </label>
     <br>
     <label class="orderInputLabel" for="amount">Amount
-      <input class="orderInputClass" type="text" name="amount"
-        value="<?php echo htmlspecialchars($order['amount'] ?? ''); ?>">
+      <input class="orderInputClass" type="text" name="amount">
     </label>
     <br>
     <label class="orderInputLabel" for="pickUpDay">Pick up day
-      <input class="orderInputClass" type="text" name="pickup_day"
-        value="<?php echo htmlspecialchars($order['pickup_day'] ?? ''); ?>">
+      <input class="orderInputClass" type="text" name="pickup_day">
     </label>
     <br>
     <label class="orderInputLabel" for="pickUpTime">Pick up time
-      <input class="orderInputClass" type="text" name="pickup_time"
-        value="<?php echo htmlspecialchars($order['pickup_time'] ?? ''); ?>" placeholder="Only from 9:00 am to 5:00 pm">
+      <input class="orderInputClass" type="text" name="pickup_time" placeholder="Only from 9:00 am to 5:00 pm">
     </label>
     <br>
     <div class="containerBtns">
       <input class="addBtn" type="submit" name="addNewOrder" value="Add New Order">
       <input class="viewBtn" type="submit" name="viewData" value="View Cart">
-      <input class="editBtn" type="submit" name="editData" value="Edit Order">
     </div>
     <div name="messageOrder">
       <?php

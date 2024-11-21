@@ -156,7 +156,7 @@ function editOrder()
     //if IF is valid then undertake edit
     if ($result !== null) {
       //SQL UPDATE STATEMENT
-      $stmt = $conn->prepare("UPDATE orderBeers SET type_beer = :type_beer, amount = :amount, pickup_day = :pickup_day, pickup_time = :pickup_time WHERE fullname = :fullName");
+      $stmt = $conn->prepare("UPDATE orderBeers SET type_beer = :type_beer, amount = :amount, pickup_day = :pickup_day, pickup_time = :pickup_time WHERE id_orders = :id_orders");
 
       $stmt->bindParam(":fullName", $fullName);
       $stmt->bindParam(":type_beer", $type_beer);
