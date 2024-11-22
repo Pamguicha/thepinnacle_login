@@ -21,9 +21,6 @@
   ?>
 
   <img class="bigLogo" src="images/pinnacle-logo.png" alt="an image of the logo of Pinnacle">
-  <form action="logout.php" method="post">
-    <input type="submit" value="Logout">
-  </form>
   <?php
   require_once("dbconnection.php");
   if (session_status() == PHP_SESSION_NONE) {
@@ -34,9 +31,12 @@
   if (isset($_SESSION["firstName"])) {
     echo "<h1>Welcome to our online shop " . htmlspecialchars($_SESSION["firstName"]) . " submit your order <a href='order.php'>here </a> </h1>";
   } else {
-    echo "You need to log in here to use this website: <a href='login.php'> Login Page </a>";
+    echo "<h1>You need to log in here to use this website: <a href='login.php'> Login Page </a> </h1>";
   }
   ?>
+  <form action="logout.php" method="post">
+    <input class="logoutBtn" type="submit" value="Logout">
+  </form>
 
 
   <?php

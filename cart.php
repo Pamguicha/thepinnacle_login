@@ -49,11 +49,11 @@ $messageCart = $_SESSION['messageCart'] ?? null;
 
 
     <tr>
-      <th> Full name </th>
-      <th> Beer type </th>
-      <th> Amount </th>
-      <th> Pick up day </th>
-      <th> Pick up time</th>
+      <th class="titlesTable"> Full name </th>
+      <th class="titlesTable"> Beer type </th>
+      <th class="titlesTable"> Amount </th>
+      <th class="titlesTable"> Pick up day </th>
+      <th class="titlesTable"> Pick up time</th>
     </tr>
 
     <?php foreach ($orders as $order): ?>

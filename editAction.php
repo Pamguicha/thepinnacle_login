@@ -35,7 +35,7 @@ function updateOrder($conn)
       $stmt->bindParam(":pickup_time", $pickup_time);
       $stmt->bindParam(":id_orders", $id_orders);
       $stmt->execute();
-      $messageEdit = "Your order has been successfully updated!" . "<br> <a href='cart.php'>View Order Here</a>";
+      $messageEdit = "<p> <font color='green'> <margin = 'auto'> Your order has been successfully updated!" . " <a href='cart.php'>View Order Here</a>";
     } else {
       $messageEdit = "Order not found.";
     }

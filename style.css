@@ -96,6 +96,10 @@ margin-left: 15px;
   cursor: pointer;
 }
 
+.containerThree{
+opacity: 0;
+}
+
 /*index page*/
 .bigLogo{
   width: 300px;
@@ -103,6 +107,20 @@ margin-left: 15px;
   margin: auto;
 }
 
+input.logoutBtn{
+  background-color: var(--primary-color-branding);
+  border: none;
+  color: var(--secondary-color-branding);
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 20px;
+  
+}
+
+input.logoutBtn:hover{
+  background-color: var(--tertiary-color-branding);
+}
 /*orderpage*/
 
 .title-order{
@@ -134,6 +152,40 @@ margin-left: 15px;
   border-radius: 20px;
   border: none;
 }
+
+input.addBtn{
+  background-color: var(--primary-color-branding);
+  border: none;
+  cursor: pointer;
+   width: 200px;
+   height: 30px;
+   margin-left: 20px;
+   color: var(--secondary-color-branding);
+   font-size: 0.8rem;
+   font-weight: 500;
+   border-radius: 20px;
+}
+
+
+
+input.viewBtn{
+  background-color: var(--secondary-color-branding);
+  border: none;
+  cursor: pointer;
+  width: 200px;
+   height: 30px;
+   font-size: 0.8rem;
+   font-weight: 500;
+   border-radius: 20px;
+}
+
+input.addBtn:hover,
+input.viewBtn:hover
+{
+  background-color: var(--tertiary-color-branding);
+  color: var(--secondary-color-branding);
+}
+
 /*edit page*/
 .editForm{
   background-color: #bec3cd;
@@ -142,6 +194,26 @@ margin-left: 15px;
   display: block;
   padding: 20px;
   margin: auto;
+}
+
+.editBtnClass{
+  
+  background-color: var(--primary-color-branding);
+  border: none;
+  cursor: pointer;
+  width: 200px;
+  height: 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--secondary-color-branding);
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.editBtnClass:hover{
+background-color: var(--tertiary-color-branding);
+color: var(--secondary-color-branding);
 }
 
 /*cart*/
@@ -157,6 +229,9 @@ margin-left: 15px;
 td{
   background-color: var(--secondary-color-branding);
   padding: 5px 20px;
+}
+.titlesTable{
+  background-color: var(--tertiary-color-branding);
 }
 
 .textFooter{
