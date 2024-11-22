@@ -33,7 +33,7 @@ try {
     $pickup_day = $resultData['pickup_day'];
     $pickup_time = $resultData['pickup_time'];
   } else {
-    echo "no user found with that id order";
+    echo " ";
   }
 } catch (PDOException $e) {
   echo "Error: " . $e->getMessage();
@@ -70,16 +70,17 @@ try {
         value="<?php echo $pickup_time; ?>">
     </label>
     <br>
+    <input type="hidden" name="id_orders" value="<?php echo $id_orders; ?>">
+
+
     <input class="editBtnClass" type="submit" name="editOrder" value="Update Order">
-
-
-    <div name="messageEdit">
-      <?php
-      if (isset($_GET['message'])) {
-        $messageEdit = urldecode($_GET['message']);
-        echo $messageEdit;
-      }
-      ?>
+    <br>
+    <?php
+    if (isset($_GET['message'])) {
+      $messageEdit = urldecode($_GET['message']);
+      echo $messageEdit;
+    }
+    ?>
     </div>
   </form>
 
