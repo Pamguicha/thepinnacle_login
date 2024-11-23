@@ -53,7 +53,7 @@ function newOrder()
       header("Location: order.php?message=" . urlencode($messageOrder));
       exit();
     } else {
-      $messageOrder = "<p> <font color='green'> A new account was created";
+      $messageOrder = "<p style='text-align: center; color: green;'> A new order was created</p>";
       header("Location: order.php?message=" . urlencode($messageOrder));
 
     }
@@ -74,7 +74,7 @@ function newOrder()
     if (!$stmt) {
       $messageOrder = "<h2><font color='red'>An error ocurred. A new order could not be created</h2>";
     } else {
-      $messageOrder = "<h2><font color='green'>A new order was created</h2>";
+      $messageOrder = "<h3 style='text-align: center; color: green;'> A new order was created</h3>";
     }
   } catch (PDOException $e) {
     $messageOrder = "Database connection failed with the gollowing error: " . $e->getMessage();
@@ -84,8 +84,10 @@ function newOrder()
 
 function displayData()
 {
-
+  // Fetch customer ID from session
   $id_customer = $_SESSION['ID_customer'] ?? null;
+
+  // Check if the user is logged in
   if (!$id_customer) {
     $messageCart = "No customer ID found. Please log in.";
     return;
@@ -99,11 +101,11 @@ function displayData()
     $stmt->bindParam(":ID_customer", $id_customer, PDO::PARAM_INT);
     $stmt->execute();
 
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($result) {
+    if ($orders) {
       //Store all orders in session
-      $_SESSION['orders'] = $result;
+      $_SESSION['orders'] = $orders;
     } else {
       $_SESSION['messageCart'] = "No orders found for this customer";
     }

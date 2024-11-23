@@ -66,6 +66,8 @@ require_once("dbConnection.php");
       if (isset($_GET['message'])) {
         $messageOrder = urldecode($_GET['message']);
         echo $messageOrder;
+
+
       }
       ?>
     </div>

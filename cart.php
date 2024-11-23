@@ -1,11 +1,36 @@
 <?php
 session_start();
-//include the database connection file
+
+// Include the database connection file
 require_once("dbconnection.php");
 
-$orders = $_SESSION['orders'] ?? [];
-$messageCart = $_SESSION['messageCart'] ?? null;
+// Fetch customer ID from session
+$ID_customer = $_SESSION['ID_customer'] ?? null;
 
+// Check if the user is logged in
+if (!$ID_customer) {
+  $_SESSION['messageCart'] = "You must be logged in to view your cart.";
+  header("Location: login.php"); // Redirect to login if not logged in
+  exit();
+}
+
+// Retrieve orders for the logged-in user
+try {
+  $stmt = $conn->prepare("CALL displayData(:ID_customer)");
+  $stmt->bindParam(":ID_customer", $ID_customer, PDO::PARAM_INT);
+  $stmt->execute();
+
+  $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if (!$orders) {
+    $_SESSION['messageCart'] = "No orders found for your account.";
+  }
+} catch (PDOException $e) {
+  $_SESSION['messageCart'] = "Database error: " . $e->getMessage();
+}
+
+// Display message if set
+$messageCart = $_SESSION['messageCart'] ?? null;
+unset($_SESSION['messageCart']); // Clear the message after displaying
 ?>
 
 
@@ -54,6 +79,7 @@ $messageCart = $_SESSION['messageCart'] ?? null;
       <th class="titlesTable"> Amount </th>
       <th class="titlesTable"> Pick up day </th>
       <th class="titlesTable"> Pick up time</th>
+      <th class="titlesTable"> Action </th>
     </tr>
 
     <?php foreach ($orders as $order): ?>
@@ -71,7 +97,15 @@ $messageCart = $_SESSION['messageCart'] ?? null;
       </tr>
     <?php endforeach; ?>
   </table>
+  <br>
 
+  <?php
+  if (isset($_GET['message'])) {
+    $messageDelete = urldecode($_GET['message']);
+    echo "<h3 style='text-align: center; color: red;'>$messageDelete</h3>";
+
+  }
+  ?>
 
   <?php
   include 'footer.php';

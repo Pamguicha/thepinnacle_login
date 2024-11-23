@@ -13,7 +13,8 @@ try {
 
   if ($stmt->rowCount() > 0) {
     //redirect if the record is successfully deleted
-    header("Location: order.php");
+    $messageDelete = "your order was successfully deleted";
+    header("Location: cart.php?id_orders=$id_orders&message=$messageDelete");
     exit();
   } else {
     echo "No record found with ID: $id_orders.";

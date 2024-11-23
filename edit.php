@@ -20,7 +20,8 @@ require_once("dbConnection.php");
 
 try {
   $id_orders = (int) $_GET['id_orders'];
-  $stmt = $conn->prepare("SELECT * FROM orderBeers WHERE id_orders = :id_orders");
+  //SQL SELECT statement
+  $stmt = $conn->prepare("CALL display_id_orders(:id_orders)");
   $stmt->bindParam(":id_orders", $id_orders, PDO::PARAM_INT);
   $stmt->execute();
 

@@ -232,6 +232,7 @@ td{
 }
 .titlesTable{
   background-color: var(--tertiary-color-branding);
+  height: 30px;
 }
 
 .textFooter{
@@ -244,5 +245,14 @@ td{
   left:0;
   bottom: -18px;
   width: 100%;
+
+}
+
+/*responsive layout - menu */
+@media only screen and (max-width: 920px){
+.containerThree,
+.title-beer {
+    display: none !important;
+}
 
 }

@@ -20,9 +20,10 @@ function updateOrder($conn)
   $id_orders = filter_input(INPUT_POST, "id_orders", FILTER_SANITIZE_STRING);
 
   try {
-    // Check if the order exists
-    $stmt = $conn->prepare("SELECT * FROM orderBeers WHERE id_orders = :id_orders");
-    $stmt->bindParam(":id_orders", $id_orders);
+
+    //SQL SELECT statement
+    $stmt = $conn->prepare("CALL display_id_orders(:id_orders)");
+    $stmt->bindParam(":id_orders", $id_orders, PDO::PARAM_INT);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
@@ -45,7 +46,7 @@ function updateOrder($conn)
   }
 
   // Redirect to edit page
-  header("Location: edit.php?message=" . urlencode($messageEdit));
+  header("Location: edit.php?id_orders=$id_orders&message=$messageEdit");
   exit;
 }
 ?>
